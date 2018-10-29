@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated metamodel -->
+    <package class="WTSpec4M.WTSpec4MPackage" genModel="models/metamodel.genmodel" uri="http://WTSpec4M/5.0"/>
+  </extension>
+  <extension id="windturbine.queries.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:windturbine.queries.Queries" id="windturbine.queries.Queries">
+      <query-specification fqn="windturbine.queries.containedMainSubsystem"/>
+      <query-specification fqn="windturbine.queries.unusedInput"/>
+      <query-specification fqn="windturbine.queries.usedInput"/>
+      <query-specification fqn="windturbine.queries.unusedOutput"/>
+      <query-specification fqn="windturbine.queries.collidingOutput"/>
+      <query-specification fqn="windturbine.queries.usedOutput"/>
+      <query-specification fqn="windturbine.queries.unusedTimer"/>
+      <query-specification fqn="windturbine.queries.usedTimer"/>
+      <query-specification fqn="windturbine.queries.unusedFault"/>
+      <query-specification fqn="windturbine.queries.usedFault"/>
+      <query-specification fqn="windturbine.queries.unusedParam"/>
+      <query-specification fqn="windturbine.queries.usedParam"/>
+      <query-specification fqn="windturbine.queries.uselessControlUnit"/>
+      <query-specification fqn="windturbine.queries.uselessSubsystem"/>
+      <query-specification fqn="windturbine.queries.subSubsystem"/>
+      <query-specification fqn="windturbine.queries.subsystemWithControlUnit"/>
+      <query-specification fqn="windturbine.queries.collidingOwnership"/>
+    </group>
+  </extension>
+</plugin>

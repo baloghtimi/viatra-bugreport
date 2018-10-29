@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ASCII"?>
+<wtc:AuthorizedSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:wtc="http://WTSpec4M/5.0"
+    protected="//@wtSystem/@subsystems.0">
+  <wtSystem>
+    <subsystems
+        description="a">
+      <controlUnits
+          inputs="//@wtSystem/@inputs.2 //@wtSystem/@inputs.0 //@wtSystem/@variables.0"
+          outputs="//@wtSystem/@outputs.3 //@wtSystem/@variables.0"
+          fault="//@wtSystem/@faults.0"/>
+      <subsystems
+          description="c">
+        <controlUnits
+            cycle="1"
+            inputs="//@wtSystem/@inputs.1 //@wtSystem/@variables.0"
+            outputs="//@wtSystem/@outputs.4"/>
+      </subsystems>
+    </subsystems>
+    <subsystems
+        description="b">
+      <controlUnits
+          cycle="2"
+          inputs="//@wtSystem/@inputs.1"
+          outputs="//@wtSystem/@outputs.1"
+          params="//@wtSystem/@params.1"
+          timers="//@wtSystem/@timers.0 //@wtSystem/@timers.1">
+        <BhvParams>test</BhvParams>
+        <BhvParams>test again</BhvParams>
+      </controlUnits>
+      <controlUnits
+          cycle="3"
+          inputs="//@wtSystem/@inputs.3"
+          outputs="//@wtSystem/@variables.0"
+          fault="//@wtSystem/@faults.2"
+          timers="//@wtSystem/@timers.1"/>
+    </subsystems>
+    <inputs/>
+    <inputs/>
+    <inputs/>
+    <inputs/>
+    <inputs/>
+    <outputs/>
+    <outputs/>
+    <outputs/>
+    <outputs/>
+    <outputs/>
+    <params
+        value="10"/>
+    <params/>
+    <timers/>
+    <timers/>
+    <faults/>
+    <faults/>
+    <faults/>
+    <variables/>
+  </wtSystem>
+  <ownerships
+      owned="//@wtSystem/@subsystems.1"/>
+  <ownerships
+      owned="//@wtSystem/@subsystems.0/@subsystems.0"
+      owner="HEATER"/>
+</wtc:AuthorizedSystem>

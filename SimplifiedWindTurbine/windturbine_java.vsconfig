@@ -1,0 +1,40 @@
+import epackage "../SimplifiedWindTurbine/models/metamodel.ecore"
+import viatra "../SimplifiedWindTurbine/src/windturbine/queries/queries.vql"
+
+/**
+ * This configuration is quick to construct based on the metamodel. 
+ * It constrains the set of possible values of numbers (reals, integers, etc.) and strings.
+ * The only datatype in this metamodel that was not supported is type 'short' - attributes of this type are excluded.
+ */
+ 
+generate {
+	metamodel = { package WTSpec4M excluding {
+		ControlUnit.cycle,ControlUnit.priority//, //Short
+		//ControlUnit.BhvParams,//String
+		//SystemTimer.value,SystemFault.value,SystemParam.value, //Integer
+		//SystemParam.settable //Boolean
+	}}
+//	constraints = { package windturbine.queries 
+//	}
+	partial-model = { "models/AuthorizedWT.xmi"}
+	solver = ViatraSolver
+	scope = {
+		#node = 30,
+		# int = {0},
+		# real = {0.1},
+		# string = {"hello"}
+	}
+	
+	config = {
+		log-level = none,
+		"diversity-range" = "1"
+	}
+	
+	number = 30
+	runs = 20
+	
+	debug =			"output/debug"
+	log =			"output/log.txt"
+	output =		"output/models"
+	statistics =	"output/statistics.csv"
+} 

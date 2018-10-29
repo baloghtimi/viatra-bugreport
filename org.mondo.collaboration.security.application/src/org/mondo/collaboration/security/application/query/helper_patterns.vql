@@ -1,0 +1,118 @@
+package org.mondo.collaboration.security.application.query
+
+import epackage "http://WTSpec4M/5.0"
+import epackage "http://www.eclipse.org/emf/2002/Ecore"
+
+// Queries all system-level input and output objects in the model
+pattern externalIO(io : EObject) {
+	SystemOutput(io);
+} or {
+	SystemInput(io);
+}
+// Queries all controller objects in the model
+pattern objectControls(ctrl : ControlUnit) {
+	ControlUnit(ctrl);
+}
+// Queries the root system object
+pattern wtRoot(system : WT) {
+	WT(system);
+}
+// Queries the root model object
+pattern modelRoot(root : AuthorizedSystem) {
+	AuthorizedSystem(root);
+}
+
+// All subsystems (incl. main subsystems)
+pattern objectModules(module : Subsystem) {
+	Subsystem(module);
+}
+
+// Queries all miscellaneous objects in the model
+pattern objectMisc(misc : EObject) {
+	WTCParam(misc);
+} or {
+	WTCTimer(misc);
+} or {
+	WTCFault(misc);
+} or {
+	SystemVariable(misc);
+}
+
+// Subsystems marked as protected IP
+pattern moduleProtected(module : Subsystem) {
+	AuthorizedSystem.protected(_, module);
+}
+// Inputs read by control units in protected IP subsystems
+pattern consumptionProtected(ctrl : ControlUnit, signal : WTCInput) {
+	find moduleProtected(module);
+	find subsystems+(module, submodule);
+	Subsystem.controlUnits(submodule, ctrl);
+	ControlUnit.inputs(ctrl, signal);
+} or {
+	find moduleProtected(module);
+	module == submodule;
+	Subsystem.controlUnits(submodule, ctrl);
+	ControlUnit.inputs(ctrl, signal);
+}
+// Composite subsystems and sub-subsystems
+pattern subsystems(module, submodule) {
+	Subsystem.subsystems(module, submodule);
+}
+
+// Subsystem assigned to given specialist
+pattern moduleOwnedBySpecialist(module : Subsystem, specialist : SpecialistKind) {
+	Ownership.owned(o, module);
+	Ownership.owner(o, specialist);
+}
+// Output or internal signal of a subsystem assigned to a specialist 
+pattern signalOwnedBySpecialist(module : Subsystem, signal : WTCOutput, specialist : SpecialistKind) {
+	find providedByModule(module, signal);
+	find moduleOwnedBySpecialist(module, specialist);
+}
+// Transitive container of a subsystem assigned to a specialist
+pattern moduleVisibleToSpecialistSubmodule(container : Subsystem, specialist : SpecialistKind) {
+	find subsystems+(container, submodule);
+	find moduleOwnedBySpecialist(submodule, specialist);
+}
+// Outputs or internal signals of transitively containing submodules, as well as non-internal outputs of sibling subsystems  
+pattern signalVisibleToSpecialistSubmodule(container : Subsystem, signal : WTCOutput, specialist : SpecialistKind) {
+	find moduleVisibleToSpecialistSubmodule(container, specialist);
+	find directlyProvidedByModule(container, signal);
+} or {
+	find moduleVisibleToSpecialistSubmodule(container, specialist);
+	Subsystem.subsystems(container, sibling);
+	find providedByModuleNonInternal(sibling, signal);
+}
+
+// Non-internal outputs of subsystems
+pattern providedByModuleNonInternal(module : Subsystem, signal : WTCOutput) {
+	find providedByModule(module, signal);
+	neg find consumedByModule(module, signal);
+}
+
+// Output or internal signal of a subsystem (provided by transitively contained control unit)
+pattern providedByModule(module : Subsystem, signal : WTCOutput) {
+	find subsystems+(module, submodule);
+	find directlyProvidedByModule(submodule, signal);
+} or {
+	module == submodule;
+	find directlyProvidedByModule(submodule, signal);
+}
+// Output or internal signal of a subsystem (provided by directly contained control unit)
+pattern directlyProvidedByModule(module : Subsystem, signal : WTCOutput) {
+	Subsystem.controlUnits.outputs(module, signal);
+}
+// Input or internal signal of a subsystem (consumed by transitively contained control unit)
+pattern consumedByModule(module : Subsystem, signal : WTCInput) {
+	find subsystems+(module, submodule);
+	find directlyConsumedByModule(submodule, signal);
+} or {
+	module == submodule;
+	find directlyConsumedByModule(submodule, signal);
+}
+// Input or internal signal of a subsystem (consumed by directly contained control unit)
+pattern directlyConsumedByModule(module : Subsystem, signal : WTCInput) {
+	Subsystem.controlUnits.inputs(module, signal);
+}
+
+

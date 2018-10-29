@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="org.mondo.collaboration.security.application.query.Sttt18_diversity" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:org.mondo.collaboration.security.application.query.Sttt18_diversity" id="org.mondo.collaboration.security.application.query.Sttt18_diversity">
+      <query-specification fqn="org.mondo.collaboration.security.application.query.externalIO"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.objectControls"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.wtRoot"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.modelRoot"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.objectModules"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.objectMisc"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.moduleProtected"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.consumptionProtected"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.subsystems"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.moduleOwnedBySpecialist"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.signalOwnedBySpecialist"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.moduleVisibleToSpecialistSubmodule"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.signalVisibleToSpecialistSubmodule"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.providedByModuleNonInternal"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.providedByModule"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.directlyProvidedByModule"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.consumedByModule"/>
+      <query-specification fqn="org.mondo.collaboration.security.application.query.directlyConsumedByModule"/>
+    </group>
+  </extension>
+</plugin>

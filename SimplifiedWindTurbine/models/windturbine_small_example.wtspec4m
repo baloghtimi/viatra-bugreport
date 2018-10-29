@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ASCII"?>
+<wtc:WT xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:wtc="http://WTSpec4M/5.0">
+  <subsystems>
+    <controlUnits
+        inputs="//@inputs.2 //@inputs.0 //@variables.0"
+        outputs="//@outputs.3"
+        fault="//@faults.0"/>
+  </subsystems>
+  <subsystems>
+    <controlUnits
+        inputs="//@inputs.1"
+        outputs="//@outputs.1"
+        params="//@params.1"
+        timers="//@timers.0 //@timers.1">
+      <BhvParams>test</BhvParams>
+      <BhvParams>test again</BhvParams>
+    </controlUnits>
+    <controlUnits
+        inputs="//@inputs.3"
+        outputs="//@variables.0"
+        fault="//@faults.2"
+        timers="//@timers.1"/>
+  </subsystems>
+  <inputs/>
+  <inputs/>
+  <inputs/>
+  <inputs/>
+  <inputs/>
+  <outputs/>
+  <outputs/>
+  <outputs/>
+  <outputs/>
+  <outputs/>
+  <params/>
+  <params/>
+  <timers/>
+  <timers/>
+  <faults/>
+  <faults/>
+  <faults/>
+  <variables/>
+</wtc:WT>

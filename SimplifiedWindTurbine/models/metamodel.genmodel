@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SimplifiedWindTurbine/src" modelPluginID="SimplifiedWindTurbine"
+    modelName="Metamodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>metamodel.ecore</foreignModel>
+  <genPackages prefix="WTSpec4M" disposableProviderFactory="true" ecorePackage="metamodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="metamodel.ecore#//SpecialistKind">
+      <genEnumLiterals ecoreEnumLiteral="metamodel.ecore#//SpecialistKind/PUMP"/>
+      <genEnumLiterals ecoreEnumLiteral="metamodel.ecore#//SpecialistKind/HEATER"/>
+      <genEnumLiterals ecoreEnumLiteral="metamodel.ecore#//SpecialistKind/FAN"/>
+    </genEnums>
+    <genClasses ecoreClass="metamodel.ecore#//WT">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/subsystems"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/outputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/timers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/faults"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//WT/variables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//WT/model"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//SystemInput"/>
+    <genClasses ecoreClass="metamodel.ecore#//SystemOutput"/>
+    <genClasses ecoreClass="metamodel.ecore#//SystemFault">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//SystemFault/value"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//SystemParam">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//SystemParam/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//SystemParam/settable"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//SystemTimer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//SystemTimer/value"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//SystemVariable"/>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//WTCInput"/>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//WTCOutput"/>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//WTCParam"/>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//WTCTimer"/>
+    <genClasses image="false" ecoreClass="metamodel.ecore#//WTCFault"/>
+    <genClasses ecoreClass="metamodel.ecore#//Subsystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Subsystem/controlUnits"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Subsystem/subsystems"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//Subsystem/description"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//ControlUnit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ControlUnit/cycle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ControlUnit/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ControlUnit/enabled"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//ControlUnit/inputs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//ControlUnit/outputs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//ControlUnit/params"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//ControlUnit/fault"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//ControlUnit/timers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//ControlUnit/BhvParams"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//MainSubsystem"/>
+    <genClasses ecoreClass="metamodel.ecore#//AuthorizedSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//AuthorizedSystem/wtSystem"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//AuthorizedSystem/protected"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//AuthorizedSystem/ownerships"/>
+    </genClasses>
+    <genClasses ecoreClass="metamodel.ecore#//Ownership">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metamodel.ecore#//Ownership/owned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//Ownership/owner"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,87 @@
+package windturbine.queries
+import "http://WTSpec4M/5.0"
+
+@Constraint(key={M}, message="MainSubsystem can not be contained by another MainSubsystem", severity="error")
+pattern containedMainSubsystem(M:MainSubsystem) {
+	Subsystem.subsystems(_,M);
+}
+
+@Constraint(key={I}, message="Inputs must be consumed by at least one control unit", severity="error")
+pattern unusedInput(I:WTCInput){
+	neg find usedInput(_,I);
+}
+
+pattern usedInput(C:ControlUnit,I:WTCInput) {
+	ControlUnit.inputs(C,I);
+}
+
+@Constraint(key={O}, message="Outputs must be provided by at least one control unit", severity="error")
+pattern unusedOutput(O:WTCOutput){
+	neg find usedOutput(_,O);
+}
+
+@Constraint(key={O}, message="Outputs must be provided by at most one control unit", severity="error")
+pattern collidingOutput(O:WTCOutput){
+	find usedOutput(c1, O);
+	find usedOutput(c2, O);
+	c1 != c2;
+}
+
+
+pattern usedOutput(C:ControlUnit,O:WTCOutput) {
+	ControlUnit.outputs(C,O);
+}
+
+@Constraint(key={T}, message="Timers must be used by at least one control unit", severity="error")
+pattern unusedTimer(T:WTCTimer) {
+	neg find usedTimer(_,T);
+}
+
+pattern usedTimer(C:ControlUnit,T:WTCTimer) {
+	ControlUnit.timers(C,T);
+}
+
+@Constraint(key={F}, message="Faults must be used by at least one control unit", severity="error")
+pattern unusedFault(F:WTCFault) {
+	neg find usedFault(_,F);
+}
+
+pattern usedFault(C:ControlUnit,F:WTCFault){
+	ControlUnit.fault(C,F);
+}
+
+@Constraint(key={P}, message="Params must be used by at least one control unit", severity="error")
+pattern unusedParam(P:WTCParam) {
+	neg find usedParam(_,P);
+}
+
+pattern usedParam(C:ControlUnit,P:WTCParam) {
+	ControlUnit.params(C,P);
+}
+
+@Constraint(key={C}, message="ControlUnits must have at least one input or output", severity="error")
+pattern uselessControlUnit(C:ControlUnit) {
+	neg find usedInput(C,_);
+	neg find usedOutput(C,_);
+}
+
+@Constraint(key={S}, message="Subsystems must have at least one control unit or subsystem", severity="error")
+pattern uselessSubsystem(S:Subsystem) {
+	neg find subSubsystem(S,_);
+	neg find subsystemWithControlUnit(S,_);
+}
+
+pattern subSubsystem(S1:Subsystem,S2:Subsystem) {
+	Subsystem.subsystems(S1,S2);
+}
+
+pattern subsystemWithControlUnit(S:Subsystem,C:ControlUnit) {
+	Subsystem.controlUnits(S,C);
+}
+
+@Constraint(key={s}, message="Subsystems must be owned by at most one specialist", severity="error")
+pattern collidingOwnership(s: Subsystem){
+	Ownership.owned(o1, s);
+	Ownership.owned(o2, s);
+	o1 != o2;
+}
