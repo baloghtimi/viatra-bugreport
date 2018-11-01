@@ -27,8 +27,8 @@ import org.mondo.collaboration.policy.RulesStandaloneSetup;
 import org.mondo.collaboration.security.application.query.EffectiveJudgement_attribute;
 import org.mondo.collaboration.security.application.query.EffectiveJudgement_object;
 import org.mondo.collaboration.security.application.query.EffectiveJudgement_reference;
-import org.mondo.collaboration.security.application.query.Sttt18_diversity;
-import org.mondo.collaboration.security.application.query.Sttt18_diversity_all_in_one;
+import org.mondo.collaboration.security.application.query.Helper_patterns;
+import org.mondo.collaboration.security.application.query.Patterns;
 
 import WTSpec4M.WTSpec4MFactory;
 import WTSpec4M.WTSpec4MPackage;
@@ -53,7 +53,7 @@ public class IncrementApplication {
 				true);
 
 		AdvancedViatraQueryEngine engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(instanceModel));
-		IQueryGroup queries = GenericQueryGroup.of(Sttt18_diversity.instance(), Sttt18_diversity_all_in_one.instance());
+		IQueryGroup queries = GenericQueryGroup.of(Helper_patterns.instance(), Patterns.instance());
 
 		Map<QueryHintOption<?>, Object> hints = new HashMap<>();
 		ReteHintOptions.deleteRederiveEvaluation.insertOverridingValue(hints, true);
